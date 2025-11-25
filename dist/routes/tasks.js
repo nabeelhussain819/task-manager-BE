@@ -1,0 +1,12 @@
+const express = require('express');
+const { getTasks, createTask, updateTask, deleteTask, updateChecklistItem, getTask } = require('../controllers/taskController');
+const { authenticateToken } = require('../middleware/auth');
+const router = express.Router();
+router.use(authenticateToken);
+router.get('/', getTasks);
+router.get('/:id', getTask);
+router.post('/', createTask);
+router.put('/:id', updateTask);
+router.delete('/:id', deleteTask);
+router.patch('/:taskId/checklist/:itemIndex', updateChecklistItem);
+module.exports = router;
